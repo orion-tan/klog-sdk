@@ -1,5 +1,5 @@
 {
-  "name": "@klog/sdk",
+  "name": "klog-sdk",
   "version": "1.0.0",
   "description": "KLog API TypeScript SDK",
   "main": "dist/index.js",

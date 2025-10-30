@@ -16,25 +16,25 @@ KLog API 的官方 TypeScript SDK，提供完整的类型安全和良好的开�
 使用 pnpm:
 
 ```bash
-pnpm install @klog/sdk
+pnpm install klog-sdk
 ```
 
 使用 npm:
 
 ```bash
-npm install @klog/sdk
+npm install klog-sdk
 ```
 
 使用 yarn:
 
 ```bash
-yarn add @klog/sdk
+yarn add klog-sdk
 ```
 
 ## 快速开始
 
 ```typescript
-import { KLogSDK } from '@klog/sdk';
+import { KLogSDK } from 'klog-sdk';
 
 // 初始化 SDK
 const klog = new KLogSDK({
@@ -245,7 +245,7 @@ const updatedUser = await klog.users.updateUser(1, {
 SDK 提供了两种错误类型：
 
 ```typescript
-import { KLogError, NetworkError } from '@klog/sdk';
+import { KLogError, NetworkError } from 'klog-sdk';
 
 try {
   await klog.posts.getPost(999);
@@ -278,7 +278,7 @@ SDK 提供了两种 Token 存储方式：
 ### LocalStorage（默认，浏览器环境）
 
 ```typescript
-import { LocalStorageTokenStorage } from '@klog/sdk';
+import { LocalStorageTokenStorage } from 'klog-sdk';
 
 const klog = new KLogSDK({
   baseURL: 'http://localhost:8080',
@@ -289,7 +289,7 @@ const klog = new KLogSDK({
 ### MemoryStorage（Node.js 环境）
 
 ```typescript
-import { MemoryTokenStorage } from '@klog/sdk';
+import { MemoryTokenStorage } from 'klog-sdk';
 
 const klog = new KLogSDK({
   baseURL: 'http://localhost:8080',
@@ -300,7 +300,7 @@ const klog = new KLogSDK({
 ### 自定义存储
 
 ```typescript
-import { TokenStorage } from '@klog/sdk';
+import { TokenStorage } from 'klog-sdk';
 
 class CustomTokenStorage implements TokenStorage {
   getToken(): string | null {
