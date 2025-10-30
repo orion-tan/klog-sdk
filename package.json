@@ -8,11 +8,11 @@
   "files": ["dist"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/twiify/klog-sdk.git"
+    "url": "https://github.com/orion-tan/klog-sdk.git"
   },
-  "homepage": "https://github.com/twiify/klog-sdk#readme",
+  "homepage": "https://github.com/orion-tan/klog-sdk#readme",
   "bugs": {
-    "url": "https://github.com/twiify/klog-sdk/issues"
+    "url": "https://github.com/orion-tan/klog-sdk/issues"
   },
   "publishConfig": {
     "access": "public"
