@@ -1,6 +1,6 @@
 {
     "name": "klog-sdk",
-    "version": "1.1.0",
+    "version": "1.1.0-patch.1",
     "description": "KLog API TypeScript SDK",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
