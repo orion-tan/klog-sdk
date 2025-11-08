@@ -101,6 +101,13 @@ export class KLogClient {
   }
 
   /**
+   * 获取基础 URL
+   */
+  getBaseURL(): string {
+    return this.config.baseURL;
+  }
+
+  /**
    * 发起 GET 请求
    */
   async get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {

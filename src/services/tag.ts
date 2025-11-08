@@ -1,5 +1,5 @@
 import type { KLogClient } from '../client';
-import type { Tag, TagCreateRequest, TagUpdateRequest } from '../types';
+import type { Tag, TagCreateRequest, TagUpdateRequest, TagQueryParams } from '../types';
 
 /**
  * 标签服务
@@ -10,8 +10,8 @@ export class TagService {
   /**
    * 获取所有标签
    */
-  async getTags(): Promise<Tag[]> {
-    return this.client.get<Tag[]>('/api/v1/tags');
+  async getTags(params?: TagQueryParams): Promise<Tag[]> {
+    return this.client.get<Tag[]>('/api/v1/tags', { params });
   }
 
   /**

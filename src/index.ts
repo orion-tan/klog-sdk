@@ -6,6 +6,7 @@ import { TagService } from './services/tag';
 import { CommentService } from './services/comment';
 import { MediaService } from './services/media';
 import { UserService } from './services/user';
+import { SettingService } from './services/setting';
 import { LocalStorageTokenStorage, TokenStorage } from './utils/storage';
 
 /**
@@ -33,6 +34,7 @@ export class KLogSDK {
   public comments: CommentService;
   public media: MediaService;
   public users: UserService;
+  public settings: SettingService;
 
   constructor(config: KLogSDKConfig) {
     this.tokenStorage = config.tokenStorage || new LocalStorageTokenStorage();
@@ -54,6 +56,7 @@ export class KLogSDK {
     this.comments = new CommentService(this.client);
     this.media = new MediaService(this.client);
     this.users = new UserService(this.client);
+    this.settings = new SettingService(this.client);
   }
 
   /**

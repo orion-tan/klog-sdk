@@ -55,7 +55,7 @@ export class MediaService {
    * 获取媒体文件 URL
    */
   getMediaUrl(filePath: string): string {
-    return `${this.client['config'].baseURL}/api/v1/media/i/${filePath}`;
+    return `${this.client.getBaseURL()}/api/v1/media/i/${filePath}`;
   }
 }
 

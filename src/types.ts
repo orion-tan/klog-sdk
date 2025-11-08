@@ -16,7 +16,7 @@ export interface ApiError {
 }
 
 /**
- * 分页响应结构
+ * 传统分页响应结构
  */
 export interface PaginatedResponse<T> {
   total: number;
@@ -24,6 +24,43 @@ export interface PaginatedResponse<T> {
   limit: number;
   data: T[];
 }
+
+/**
+ * 游标分页响应结构
+ */
+export interface CursorPaginatedResponse<T> {
+  has_more: boolean;
+  next_cursor?: string;
+  data: T[];
+}
+
+/**
+ * 传统分页参数
+ */
+export interface TraditionalPaginationParams {
+  page?: number;
+  limit?: number;
+  cursor?: never;
+}
+
+/**
+ * 游标分页参数
+ */
+export interface CursorPaginationParams {
+  cursor?: string;
+  limit?: number;
+  page?: never;
+}
+
+/**
+ * 统一分页参数（联合类型）
+ */
+export type PaginationParams = TraditionalPaginationParams | CursorPaginationParams;
+
+/**
+ * 统一分页响应（联合类型）
+ */
+export type PaginationResponse<T> = PaginatedResponse<T> | CursorPaginatedResponse<T>;
 
 /**
  * 用户模型
@@ -70,6 +107,7 @@ export interface Category {
   name: string;
   slug: string;
   description?: string | null;
+  post_count?: number;
 }
 
 /**
@@ -79,6 +117,7 @@ export interface Tag {
   id: number;
   name: string;
   slug: string;
+  post_count?: number;
 }
 
 /**
@@ -109,6 +148,7 @@ export interface Media {
   file_name: string;
   file_path: string;
   file_hash: string;
+  url: string;
   mime_type: string;
   size: number;
   created_at: string;
@@ -175,17 +215,34 @@ export interface PostUpdateRequest {
 }
 
 /**
- * 文章查询参数
+ * 文章查询参数基础
  */
-export interface PostQueryParams {
-  page?: number;
-  limit?: number;
+export interface PostQueryParamsBase {
   status?: 'draft' | 'published' | 'archived';
   category?: string;
   tag?: string;
   sortBy?: string;
   order?: 'asc' | 'desc';
   detail?: 0 | 1;
+}
+
+/**
+ * 文章查询参数（支持传统分页和游标分页）
+ */
+export type PostQueryParams = PostQueryParamsBase & PaginationParams;
+
+/**
+ * 分类查询参数
+ */
+export interface CategoryQueryParams {
+  with_count?: boolean | string | number;
+}
+
+/**
+ * 标签查询参数
+ */
+export interface TagQueryParams {
+  with_count?: boolean | string | number;
 }
 
 /**
@@ -290,4 +347,47 @@ export interface RegisterResponse {
   email: string;
   nickname: string;
 }
+
+/**
+ * 设置类型枚举
+ */
+export type SettingType = 'str' | 'number' | 'json';
+
+/**
+ * 设置模型
+ */
+export interface Setting {
+  key: string;
+  value: string;
+  type: SettingType;
+}
+
+/**
+ * 设置创建/更新请求
+ */
+export interface SettingUpsertRequest {
+  key: string;
+  value: string;
+  type: SettingType;
+}
+
+/**
+ * 批量设置请求
+ */
+export interface SettingBatchRequest {
+  settings: SettingUpsertRequest[];
+}
+
+/**
+ * 批量设置响应
+ */
+export interface SettingBatchResponse {
+  updated_count: number;
+  settings: Setting[];
+}
+
+/**
+ * 获取所有设置的响应（动态键值对）
+ */
+export type SettingsResponse = Record<string, string | number | object>;
 

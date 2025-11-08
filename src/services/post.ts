@@ -4,7 +4,7 @@ import type {
   PostCreateRequest,
   PostUpdateRequest,
   PostQueryParams,
-  PaginatedResponse,
+  PaginationResponse,
 } from '../types';
 
 /**
@@ -14,10 +14,10 @@ export class PostService {
   constructor(private client: KLogClient) {}
 
   /**
-   * 获取文章列表
+   * 获取文章列表（支持传统分页和游标分页）
    */
-  async getPosts(params?: PostQueryParams): Promise<PaginatedResponse<Post>> {
-    return this.client.get<PaginatedResponse<Post>>('/api/v1/posts', { params });
+  async getPosts(params?: PostQueryParams): Promise<PaginationResponse<Post>> {
+    return this.client.get<PaginationResponse<Post>>('/api/v1/posts', { params });
   }
 
   /**

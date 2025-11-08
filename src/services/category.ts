@@ -1,5 +1,5 @@
 import type { KLogClient } from '../client';
-import type { Category, CategoryCreateRequest, CategoryUpdateRequest } from '../types';
+import type { Category, CategoryCreateRequest, CategoryUpdateRequest, CategoryQueryParams } from '../types';
 
 /**
  * 分类服务
@@ -10,8 +10,8 @@ export class CategoryService {
   /**
    * 获取所有分类
    */
-  async getCategories(): Promise<Category[]> {
-    return this.client.get<Category[]>('/api/v1/categories');
+  async getCategories(params?: CategoryQueryParams): Promise<Category[]> {
+    return this.client.get<Category[]>('/api/v1/categories', { params });
   }
 
   /**
