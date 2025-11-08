@@ -62,9 +62,9 @@ export type PaginationParams =
 /**
  * 统一分页响应（联合类型）
  */
-export type PaginationResponse<TP, T> = TP extends { cursor: string }
-    ? CursorPaginatedResponse<T>
-    : PaginatedResponse<T>;
+export type PaginationResponse<TP, T> = TP extends { page: number }
+    ? PaginatedResponse<T>
+    : CursorPaginatedResponse<T>;
 
 /**
  * 用户模型
